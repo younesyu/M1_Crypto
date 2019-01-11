@@ -40,8 +40,11 @@ public class cert {
             writer.close();
 
         } catch (Exception e) {}
+        String result = md5hash(file);
 
-        return md5hash(file);
+        file.delete();
+
+        return result;
 
     }
     public static void main(String[] args)throws Exception 
@@ -86,7 +89,7 @@ public class cert {
       System.out.println("\nSqueezing body...\n");
       String bod = "";
       for (String s : body) {
-          bod.concat(s + "\n");
+          bod = bod.concat(s + "\n");
       }
       bod.substring(0, bod.length() - 2);
 
@@ -94,11 +97,12 @@ public class cert {
 
       System.out.println("\n_________\n");
       
+      System.out.println("\nhash du corps: \n" + md5String(bod));
+      
+      System.out.println();
 
-      String hashed = md5hash(file);
 
-      System.out.println("\nRésultat de la fonction :");
-      System.out.println(hashed);
+      System.out.println("\n_________\n");
     }
 
       
